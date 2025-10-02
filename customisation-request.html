@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customisation Request - Modelling Studio HUB</title>
+  <style>
+    :root {
+      --primary:#1d1d1f; --secondary:#86868b; --accent:#0071e3; --light:#f5f5f7; --white:#fff;
+    }
+    body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Roboto,sans-serif; margin:0; background:var(--white); color:var(--primary); }
+    nav { position:fixed; top:0; width:100%; background:rgba(255,255,255,0.8); border-bottom:1px solid rgba(0,0,0,0.1); }
+    .nav-container { max-width:980px; margin:0 auto; padding:0 22px; display:flex; justify-content:space-between; align-items:center; height:48px; }
+    .logo { font-size:21px; font-weight:600; color:var(--primary); text-decoration:none; }
+    .nav-links { display:flex; gap:36px; list-style:none; }
+    .nav-links a { color:var(--primary); text-decoration:none; font-size:12px; }
+
+    .form-section { padding:120px 20px; max-width:700px; margin:80px auto 0; text-align:center; }
+    .form-section h1 { font-size:36px; margin-bottom:16px; }
+    .form-section p { color:var(--secondary); margin-bottom:40px; }
+    form { display:flex; flex-direction:column; gap:20px; background:var(--light); padding:40px; border-radius:18px; }
+    input, select, textarea { padding:12px 16px; border:1px solid #ddd; border-radius:8px; font-size:16px; width:100%; }
+    textarea { resize:vertical; min-height:120px; }
+    button { background:var(--accent); color:var(--white); padding:14px; border:none; border-radius:980px; font-size:17px; cursor:pointer; transition:all 0.3s; }
+    button:hover { background:#0077ed; }
+    footer { background:var(--light); padding:40px 20px; text-align:center; margin-top:60px; }
+    .footer-text { font-size:12px; color:var(--secondary); margin-bottom:8px; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Home</a>
+      <ul class="nav-links">
+        <li><a href="index.html#plugins">Explore Plugins</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Form -->
+  <section class="form-section">
+    <h1>Customisation Request</h1>
+    <p>Tell us about your requirements and our team will get back to you within 24 hours.</p>
+
+    <form action="https://formspree.io/f/mvgwravk" method="POST" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Phone Number (optional)">
+      
+      <select name="project-type" required>
+        <option value="">Select Project Type</option>
+        <option value="Azure Cutter">Azure Cutter</option>
+        <option value="Pave Planner">Pave Planner</option>
+        <option value="Other">Other</option>
+      </select>
+      
+      <textarea name="details" placeholder="Describe your customisation request..." required></textarea>
+      
+      <label style="text-align:left; font-size:14px; color:var(--secondary);">Attach file (optional):</label>
+      <input type="file" name="attachment">
+      
+      <button type="submit">Submit Request</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p class="footer-text">© 2025 Modelling Studio HUB. All rights reserved.</p>
+      <p class="footer-text">Designed for 3D professionals worldwide.</p>
+    </div>
+  </footer>
+</body>
+</html>
