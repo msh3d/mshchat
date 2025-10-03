@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Rhino Plugins - Professional Design Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1d1d1f;
+            --secondary: #86868b;
+            --accent: #0071e3;
+            --light: #f5f5f7;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--white);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 48px;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-description {
+            font-size: 17px;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            padding: 12px 28px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            border: 1px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Plugin Showcase */
+        .plugin-section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 21px;
+            color: var(--secondary);
+            font-weight: 400;
+        }
+
+        /* Plugin Cards */
+        .plugin-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .plugin-card {
+            background: var(--light);
+            border-radius: 18px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+            transition: transform 0.5s ease;
+        }
+
+        .plugin-card:hover {
+            transform: scale(1.01);
+        }
+
+        .plugin-card:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .plugin-card:nth-child(even) .plugin-content {
+            order: 2;
+        }
+
+        .plugin-card:nth-child(even) .plugin-visual {
+            order: 1;
+        }
+
+        .plugin-content {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .plugin-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .plugin-name {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .plugin-description {
+            font-size: 17px;
+            color: var(--secondary);
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .plugin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            transition: gap 0.3s;
+        }
+
+        .plugin-link:hover {
+            gap: 12px;
+        }
+
+        .plugin-visual {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: var(--primary);
+            color: var(--white);
+            padding: 120px 20px;
+        }
+
+        .features-section .section-title {
+            color: var(--white);
+        }
+
+        .features-section .section-subtitle {
+            color: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-text {
+            font-size: 17px;
+            color: var(--secondary);
+            line-height: 1.5;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 120px 20px;
+            background: var(--light);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 48px 40px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-period {
+            font-size: 17px;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .pricing-amount {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .pricing-duration {
+            font-size: 17px;
+            color: var(--secondary);
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            font-size: 15px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 120px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .contact-item {
+            padding: 32px;
+            background: var(--light);
+            border-radius: 18px;
+        }
+
+        .contact-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .contact-value a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-value a:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 21px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .plugin-card {
+                grid-template-columns: 1fr !important;
+            }
+
+            .plugin-card:nth-child(even) .plugin-content {
+                order: 1;
+            }
+
+            .plugin-card:nth-child(even) .plugin-visual {
+                order: 2;
+            }
+
+            .plugin-content {
+                padding: 40px 32px;
+            }
+
+            .plugin-name {
+                font-size: 32px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Home</a>
+            <ul class="nav-links">
+                <li><a href="#plugins">Explore Plugins</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Design Jewellery Faster and Smarter</h1>
+        <p class="hero-subtitle">Professional tools for Rhino 3D</p>
+        <p class="hero-description">
+            Save hours of manual work with professional plugins. 
+            Create beautiful designs instantly.
+        </p>
+        <div class="cta-group">
+            <a href="#plugins" class="btn-primary">Explore Plugins</a>
+            <a href="#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+    </section>
+
+    <!-- Plugins Section -->
+    <section id="plugins" class="plugin-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Plugins</h2>
+            <p class="section-subtitle">Powerful. Intuitive. Professional.</p>
+        </div>
+
+        <div class="plugin-grid">
+            <!-- Plugin 1 -->
+            <div class="plugin-card">
+                <div class="plugin-content">
+                    <span class="plugin-label">Essential</span>
+                    <h3 class="plugin-name">Azure Cutter Pro</h3>
+                    <p class="plugin-description">
+                        Generate perfect cutters in seconds with intelligent parameter controls. 
+                        Save up to 5 hours per project with automated workflows.
+                    </p>
+                    <a href="plugin1.html" class="plugin-link">
+                        Learn more →
+                    </a>
+                </div>
+                <div class="plugin-visual">
+                    <span>⬢</span>
+                </div>
+            </div>
+
+            <!-- Plugin 2 -->
+            <div class="plugin-card">
+                <div class="plugin-content">
+                    <span class="plugin-label">Popular</span>
+                    <h3 class="plugin-name">Advanced Piping Pattern Tool</h3>
+                    <p class="plugin-description">
+                        Create complex patterns with precision. Perfect for architectural 
+                        facades, jewelry design, and industrial applications.
+                    </p>
+                    <a href="plugin2.html" class="plugin-link">
+                        Learn more →
+                    </a>
+                </div>
+                <div class="plugin-visual" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <span>🎨</span>
+                </div>
+            </div>
+
+            <!-- Plugin 3 -->
+            <div class="plugin-card">
+                <div class="plugin-content">
+                    <span class="plugin-label">COMING SOON</span>
+                    <h3 class="plugin-name">Advance Pave Planner</h3>
+                    <p class="plugin-description">
+                        Automate repetitive modeling tasks. Intelligent modifiers that 
+                        understand your design intent and save valuable time.
+                    </p>
+                    <a href="plugin3.html" class="plugin-link">
+                        Learn more →
+                    </a>
+                </div>
+                <div class="plugin-visual" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <span>🔧</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose Our Tools</h2>
+            <p class="section-subtitle">Built for professionals who demand excellence</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-text">
+                    Optimized algorithms deliver instant results. No waiting, no compromises.
+                </p>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">💎</span>
+                <h3 class="feature-title">Professional Quality</h3>
+                <p class="feature-text">
+                    Production-ready outputs that meet industry standards every time.
+                </p>
+            </div>
+            
+            <div class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">Precision Control</h3>
+                <p class="feature-text">
+                    Fine-tune every parameter with intuitive controls in real-time.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-header">
+            <h2 class="section-title">Simple Pricing</h2>
+            <p class="section-subtitle">Choose the plan that fits your workflow</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <p class="pricing-period">Quarterly</p>
+                <div class="pricing-amount">₹29,999</div>
+                <p class="pricing-duration">Single user</p>
+                <ul class="pricing-features">
+                    <li>All plugins included</li>
+                    <li>Email support</li>
+                    <li>Commercial license</li>
+                </ul>
+                <a href="mailto:support@yourplugins.com" class="btn-primary" style="width: 100%; display: block; text-align: center;">Subscribe</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Best Value</div>
+                <p class="pricing-period">Annual</p>
+                <div class="pricing-amount">₹95,999</div>
+                <p class="pricing-duration">Single user • Save 11.1%</p>
+                <ul class="pricing-features">
+                    <li>All plugins included</li>
+                    <li>Priority support</li>
+                    <li>Regular updates</li>
+                    <li>Email support</li>
+                    <li>Commercial license</li>
+                </ul>
+                <a href="mailto:support@yourplugins.com" class="btn-primary" style="width: 100%; display: block; text-align: center;">Subscribe</a>
+            </div>
+
+            <div class="pricing-card">
+                <p class="pricing-period">Half-Yearly</p>
+                <div class="pricing-amount">₹49,999</div>
+                <p class="pricing-duration">Single user • Save 8%</p>
+                <ul class="pricing-features">
+                    <li>All plugins included</li>
+                    <li>Regular updates</li>
+                    <li>Email support</li>
+                    <li>Commercial license</li>
+                </ul>
+                <a href="mailto:support@yourplugins.com" class="btn-primary" style="width: 100%; display: block; text-align: center;">Subscribe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get in Touch with Us</h2>
+        <p class="section-subtitle">We're here to help with any questions</p>
+
+        <div class="contact-grid">
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">
+                    <a href="mailto:support@yourplugins.com">msh3dstudio@gmail.com</a></div>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-icon">📱</span>
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">
+                    <a href="tel:+1234567890">+91 8286452818</a></div>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-icon">⏱️</span>
+                <div class="contact-label">Response Time</div>
+                <div class="contact-value">Within 24 hours</div>
+            </div>
+
+            <div class="contact-item">
+                <span class="contact-icon">🛠️</span>
+                <div class="contact-label">Customisation</div>
+                <div class="contact-value">
+                    <a href="customisation-request.html">Request Customisation →</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Modelling Studio HUB. All rights reserved.</p>
+            <p class="footer-text">Designed for 3D professionals worldwide.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Documentation</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
