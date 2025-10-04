@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Pave Planner - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1d1d1f;
+            --secondary: #86868b;
+            --accent: #0071e3;
+            --light: #f5f5f7;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--white);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 48px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: var(--primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.3) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffd93d;
+            color: #ffd93d;
+            padding: 8px 20px;
+            border-radius: 980px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #0077ed;
+            transform: scale(1.05);
+        }
+
+        /* Notify Section */
+        .notify-section {
+            padding: 80px 20px;
+            background: var(--light);
+        }
+
+        .notify-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .notify-title {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 16px;
+        }
+
+        .notify-description {
+            font-size: 17px;
+            color: var(--secondary);
+            margin-bottom: 40px;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .notify-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 980px;
+            font-size: 16px;
+        }
+
+        .notify-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .notify-button {
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .notify-button:hover {
+            background: #0077ed;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 48px 32px;
+            background: var(--light);
+            border-radius: 18px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-description {
+            font-size: 17px;
+            color: var(--secondary);
+            line-height: 1.5;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 120px 20px;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .timeline-section .section-title {
+            color: var(--white);
+        }
+
+        .timeline-section .section-subtitle {
+            color: var(--secondary);
+            font-size: 21px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: flex-start;
+        }
+
+        .timeline-date {
+            min-width: 150px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .timeline-content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-size: 15px;
+            color: var(--secondary);
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 20px;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .cta-subtitle {
+            font-size: 21px;
+            color: var(--secondary);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            padding: 12px 28px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            border: 1px solid var(--accent);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .footer-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 21px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .notify-title {
+                font-size: 32px;
+            }
+
+            .notify-form {
+                flex-direction: column;
+            }
+
+            .cta-title {
+                font-size: 36px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .timeline-date {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Home</a>
+            <ul class="nav-links">
+                <li><a href="index.html#plugins">All Plugins</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="index.html#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="coming-soon-badge">⭐ Coming Q2 2025</div>
+            <h1 class="hero-title">Advance Pave Planner</h1>
+            <p class="hero-subtitle">Automate pave setting with intelligent algorithms.</p>
+            <a href="#notify" class="btn-primary">Get Notified at Launch</a>
+        </div>
+    </section>
+
+    <!-- Notify Section -->
+    <section id="notify" class="notify-section">
+        <div class="notify-container">
+            <h2 class="notify-title">Be the First to Know</h2>
+            <p class="notify-description">
+                Join our early access list and get notified when Advance Pave Planner launches. 
+                Plus, get exclusive launch pricing.
+            </p>
+            <form class="notify-form" action="https://formspree.io/f/mvgwravk" method="POST">
+                <input type="email" name="email" class="notify-input" placeholder="Enter your email" required>
+                <input type="hidden" name="plugin" value="Advance Pave Planner - Notify Me">
+                <button type="submit" class="notify-button">Notify Me</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <h2 class="section-title">What's Coming</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3 class="feature-title">AI-Powered Placement</h3>
+                <p class="feature-description">
+                    Intelligent algorithm analyzes your design and automatically places stones with perfect spacing.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">✨</span>
+                <h3 class="feature-title">Pattern Generation</h3>
+                <p class="feature-description">
+                    Generate complex pave patterns instantly. Choose from presets or create custom arrangements.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">Smart Spacing</h3>
+                <p class="feature-description">
+                    Maintains consistent spacing between stones accounting for prong size and tolerances.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3 class="feature-title">Real-Time Preview</h3>
+                <p class="feature-description">
+                    See your pave design update in real-time as you adjust parameters. No waiting.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔧</span>
+                <h3 class="feature-title">Surface Mapping</h3>
+                <p class="feature-description">
+                    Works on any surface shape - flat, curved, or complex. Automatic UV mapping.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">✅</span>
+                <h3 class="feature-title">Production Ready</h3>
+                <p class="feature-description">
+                    Generates manufacturing-ready geometry with proper prong placement and seat guides.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <h2 class="section-title">Development Roadmap</h2>
+        <p class="section-subtitle">Here's what we're working on</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">January 2025</div>
+                <div class="timeline-content">
+                    <h3>Core Algorithm Development</h3>
+                    <p>Completed the AI-powered placement algorithm with pattern recognition and spacing optimization.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">February 2025</div>
+                <div class="timeline-content">
+                    <h3>Beta Testing Phase</h3>
+                    <p>Working with select jewelers to refine features and ensure production-ready quality.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">March 2025</div>
+                <div class="timeline-content">
+                    <h3>UI Polish & Documentation</h3>
+                    <p>Finalizing user interface, creating comprehensive tutorials, and preparing documentation.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">April 2025</div>
+                <div class="timeline-content">
+                    <h3>Public Release</h3>
+                    <p>Official launch with full feature set, priority support, and special launch pricing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="cta-title">Don't Miss the Launch</h2>
+        <p class="cta-subtitle">Join designers waiting for this revolutionary tool</p>
+        <div class="cta-buttons">
+            <a href="#notify" class="btn-primary">Get Early Access</a>
+            <a href="index.html#contact" class="btn-secondary">Ask Questions</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">© 2025 MSH. All rights reserved.</p>
+        <p class="footer-text">Questions? Email us at <a href="mailto:msh3dstudio@gmail.com">msh3dstudio@gmail.com</a></p>
+    </footer>
+</body>
+</html>
